@@ -1,10 +1,18 @@
+
 void setup()
 {
 	noLoop();
+	size(500,500);
 }
 void draw()
 {
-	//your code here
+
+	for(int x = 50;x<450;x=x+75)
+	{
+		rect(x,50,40,40,25);
+	}
+
+
 }
 void mousePressed()
 {
@@ -12,17 +20,25 @@ void mousePressed()
 }
 class Die //models one single dice cube
 {
+	int myX, myY;
+	int diceNum;
 	//variable declarations here
 	Die(int x, int y) //constructor
 	{
-		//variable initializations here
+		diceNum = (int)(Math.random()*7)+1;
+		myX = x;
+		myY = y;
 	}
 	void roll()
 	{
-		//your code here
+		if(diceNum < 2)
+			{
+				ellipse(myX,myY,10,10);
+			}
+		
 	}
 	void show()
 	{
-		//your code here
+		
 	}
 }
