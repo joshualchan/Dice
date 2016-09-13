@@ -1,4 +1,5 @@
-int count = 0;
+int count =0;
+double ad = 0.00000;
 void setup()
 {
 	noLoop();
@@ -14,11 +15,23 @@ void draw()
 		
 		for(b=50 ; b<400 ; b = b + 100){
 			Die hello = new Die (a,b);
+			stroke(5);
 			hello.show();
-			hello.sumDice();
-			
+
+			//hello.sumDice();
+		fill(255);
+		noStroke();
+		rect(20,460,200,50);
+		fill(0);
+		text("Sum of dice: " + count,40,480);
+
+		fill(255);
+		rect(200,460,300,50);
+		fill(0);
+		text("Average of dice: "+ad,250,480);
+
 		}
-		
+
 
 
 	}
@@ -26,6 +39,8 @@ void draw()
 }
 void mousePressed()
 {
+	count = 0;
+	ad = 0.000;
 	redraw();
 }
 class Die //models one single dice cube
@@ -38,7 +53,8 @@ class Die //models one single dice cube
 		diceNum = (int)(Math.random()*6+1);
 		myX = x;
 		myY = y;
-		count = count + diceNum ;
+		count =  diceNum + count ;
+		ad = count/16 ;
 	}
 
 	
@@ -46,10 +62,11 @@ class Die //models one single dice cube
 	void show()
 	{
 
-		fill(255);
+		fill((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 		rect(myX,myY,80,80,20);
 
 		fill(0);
+
 		if(diceNum < 2)
 			{
 				
@@ -86,18 +103,10 @@ class Die //models one single dice cube
 				ellipse(myX +60 ,myY+20,10,10);
 				ellipse(myX + 20 ,myY +60,10,10);
 			}
+	
+			
 			
 			
 	}
-	void sumDice(){
-		fill(255);
 
-		rect(20,460,200,50);
-
-		fill(0);
-		text("Sum of dice: " + count,40,480);
-				
-			}
-			
-	
 }
